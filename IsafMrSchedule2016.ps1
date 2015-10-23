@@ -1,6 +1,6 @@
-﻿$url = "http://www.sailing.org/regattasearch.php?nocache=1&includeref=regattasearch&regattadiscipline=1&regattatype=1&regattayear=2015&regattacountry=211"
+﻿$url = "http://www.sailing.org/regattasearch.php?nocache=1&includeref=regattasearch&regattadiscipline=1&regattatype=1&regattayear=2016&regattacountry=211"
 $xpath = "//table[@class='results']"
-$outputFolder = "IsafMrSchedule2015"
+$outputFolder = "IsafMrSchedule2016"
 $beyondComparePath = "C:\Program Files (x86)\Beyond Compare 4\BCompare.exe"
 
 add-type -Path .\HtmlAgilityPack.dll
@@ -26,7 +26,7 @@ if($comparison)
 
     $reportFileName = $timestamp + "_diff.html"
     &$beyondComparePath /silent `@"comparisonScript.txt" "$outputFolder\$latestFile" "$outputFolder\$savedFileName" "$outputFolder\$reportFileName" | Out-Null
+    Copy-Item "$outputFolder\$reportFileName" "$([Environment]::GetFolderPath('Desktop'))"
 }
 
-Copy-Item "$outputFolder\$reportFileName" "$([Environment]::GetFolderPath('Desktop'))"
 Remove-Item .\$outputFolder\current.html
